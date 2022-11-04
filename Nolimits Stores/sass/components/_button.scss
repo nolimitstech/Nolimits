@@ -1,0 +1,126 @@
+.btn {
+
+	&,
+	&:link,
+	&:visited {
+		text-transform: uppercase;
+		text-decoration: none;
+		padding: 1.5rem 4rem;
+		display: inline-block;
+		border-radius: 10rem;
+		transition: all .5s;
+		position: relative;
+		font-size: $default-font-size;
+
+		// Change for the <button> element
+		border: none;
+		cursor: pointer;
+	}
+
+	&:hover {
+		transform: translateY(-.3rem);
+		/* box-shadow: first value the x direction; second value is the y direction; the third value is the blur; the final value is the color of the shadow */
+		box-shadow: 0 1rem 2rem rgba($black, .2);
+
+		&::after {
+			transform: scaleX(1.4) scaleY(1.6);
+			/* SCALE increases the size of the element, you can scaleX() or scaleY() separate or both togher scale() */
+			opacity: 0;
+		}
+	}
+
+	/* When we click on the button --> :active */
+	&:active,
+	&:focus {
+		outline: none;
+		transform: translateY(-1px);
+		box-shadow: 0 .5rem 1rem rgba($black, .2);
+	}
+
+	&--white {
+		background-color: $white;
+		color: $dark-grey;
+
+		&::after {
+			background-color: $white;
+		}
+
+		// @include respond(phone) {
+		// 	padding: 1rem 3.5rem;
+		// 	display: inline-block;
+		// 	border-radius: 9.5rem;
+		// }
+	}
+
+	&--orange {
+		background-color: $secondary-orange-dark;
+		color: $white;
+
+
+		&::after {
+			background-color: $secondary-orange-dark;
+		}
+	}
+
+	&--green {
+		background-color: $primary-green;
+		color: $white;
+
+		&::after {
+			background-color: $primary-green;
+		}
+	}
+
+	&::after {
+		content: "";
+		/* We need a content, even an empty content like this one. Otherwise it won't work */
+		display: inline-block;
+		/* The same for the display property */
+		height: 100%;
+		/* The after pseudo element is basically treated like the "child" of the button and we want exact the same dimensions */
+		width: 100%;
+		border-radius: 10rem;
+		position: absolute;
+		/* The relative element is the "original" button */
+		top: 0;
+		left: 0;
+		z-index: -1;
+		/*It defines the position of the elements if one is on top of the other */
+		transition: all .4s;
+	}
+
+	&--animated {
+		animation: moveInBottom .5s ease-out .75s;
+		/* The last value is the animation delay */
+		animation-fill-mode: backwards;
+		/* It applies automatically the style of the 0% before the animation starts */
+	}
+}
+
+.btn-text {
+
+	&:link,
+	&:visited {
+		font-size: $default-font-size;
+		color: $darkred;
+		display: inline-block;
+		text-decoration: none;
+		border-bottom: 1px solid $darkred;
+		padding: 1rem;
+		transition: all .2s;
+	}
+
+	&:hover {
+		background-color: $darkred;
+		border-radius: $default-border-radius;
+		color: $white;
+		padding: 1rem;
+		box-shadow: 0 1rem 2rem rgba($black, .15);
+		transform: translateY(-2px);
+	}
+
+	&:active {
+		box-shadow: 0 .5rem 1rem rgba($black, .15);
+		transform: translateY(0);
+	}
+}
